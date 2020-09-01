@@ -41,7 +41,7 @@ vim.bo.autoindent = true
 vim.g.mapleader = ' '
 
 -- set language to english
-vim.cmd('language en_US')
+vim.cmd('language en_US.utf-8')
 -- vim.v.lang = 'en_US'
 
 -- enable syntax highlighting

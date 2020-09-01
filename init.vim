@@ -1,6 +1,5 @@
 " language en_US
 lua require 'init'
-lua require 'keys'
 
 " get highlighting group under cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
