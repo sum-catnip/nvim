@@ -1,14 +1,17 @@
-local mt = {}
+local mt  = {}
+local mt2 = {}
 
-function mt.__index(t, k)
-  if not mt.funcname then mt.funcname = k
-  else mt.funcname = mt.funcname .. '#' .. k end
+function mt.__index(_, k)
+  return setmetatable({__func = k}, mt2)
+end
+
+function mt2.__index(t, k)
+  t.__func = t.__func .. '#' .. k
   return t
 end
 
-function mt.__call(_, ...)
-  local res = vim.fn[mt.funcname](...)
-  mt.funcname = nil
+function mt2.__call(t, ...)
+  local res = vim.fn[t.__func](...)
   return res
 end
 
