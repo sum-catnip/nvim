@@ -24,18 +24,29 @@ vim.o.hlsearch = true
 vim.o.clipboard = 'unnamedplus'
 -- background color for themes
 vim.o.background = 'dark'
-
--- buffer --
-
 -- number of spaces a tab should be
-vim.bo.tabstop = 2
+vim.o.tabstop = 2
 -- implicit tab size
-vim.bo.softtabstop = 2
+vim.o.softtabstop = 2
 -- another kind of stabstop
-vim.bo.shiftwidth = 2
+vim.o.shiftwidth = 2
 -- convert tabs to spaces
-vim.bo.expandtab = true
-vim.bo.autoindent = true
+vim.o.expandtab = true
+vim.o.autoindent = true
+
+-- coc compatability --
+
+-- abandon buffer when unloading
+vim.o.hidden = true
+-- some language servers dont like backup files
+vim.o.backup = false
+vim.o.writebackup = false
+-- more space for coc messages
+vim.o.cmdheight = 2
+-- more responsiveness
+vim.o.updatetime = 300
+-- avoid some prompts?
+vim.o.shortmess = vim.o.shortmess .. 'c'
 
 -- set leader key to space
 vim.g.mapleader = ' '
