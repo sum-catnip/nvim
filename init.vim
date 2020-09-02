@@ -1,4 +1,3 @@
-" language en_US
 lua require 'init'
 
 " get highlighting group under cursor
@@ -6,34 +5,6 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-call plug#begin(stdpath('data') . '/plugged')
-
-Plug 'dag/vim-fish'
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-Plug 'mhartington/oceanic-next'
-Plug 'psliwka/vim-smoothie'
-Plug 'vim-airline/vim-airline'
-Plug 'henrynewcomer/vim-theme-papaya'
-Plug 'cseelus/vim-colors-lucid'
-Plug 'ajmwagar/vim-deus'
-Plug 'tyrannicaltoucan/vim-deep-space'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jaxbot/semantic-highlight.vim'
-Plug 'justinmk/vim-sneak'
-Plug 'jreybert/vimagit'
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'w0rp/ale'
-Plug 'preservim/nerdtree'
-Plug 'nvim-treesitter/nvim-treesitter'
-
-call plug#end()
-
-
-colorscheme deep-space
-let g:airline_theme='deep_space'
-let g:oceanic_next_terminal_italic = 1
-let g:oceanic_next_terminal_bold = 1
-let g:deepspace_italics=1
 
 " treesitter
 lua <<EOF
@@ -47,38 +18,6 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 EOF
-
-" disable colorschemes bg color
-" highlight Normal ctermbg=none guibg=none
-" highlight SignColumn ctermbg=none guibg=none
-" highlight LineNr ctermbg=none guibg=none
-" highlight EndOfBuffer ctermbg=none guibg=none
-
-" leader f settings
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_PreviewInPopup = 1
-let g:Lf_ShortcutF = "<leader>ff"
-noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
-noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-noremap <leader>fc :<C-U><C-R>=printf("Leaderf command %s", "")<CR><CR>
-
-if (has("termguicolors"))
-    set termguicolors
-    let kektop = synIDattr(hlID("Normal"), "bg#")
-endif
-
-" coc
-
-set hidden
-set nobackup
-set nowritebackup
-
-set cmdheight=2
-set updatetime=300
-set shortmess+=c
-set signcolumn=no
 
 " tab to trigger completion
 inoremap <silent><expr> <TAB>
