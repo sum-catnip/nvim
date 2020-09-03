@@ -2,6 +2,8 @@
 
 -- show line numbers
 vim.wo.number = true
+-- put numbers and signs in the same column
+vim.wo.signcolumn = 'number'
 
 -- edior --
 
