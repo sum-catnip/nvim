@@ -17,3 +17,4 @@ vfuncs.plug['end']()
 
 -- import plugs settings
 require('plugs.coc')
+require('plugs.treesitter')

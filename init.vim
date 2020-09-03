@@ -1,30 +1,30 @@
 lua require 'init'
 
 " get highlighting group under cursor
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+" \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+" \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 
 " treesitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "python", -- one of "all", "language", or a list of languages
-  highlight = {
-    enable = true -- false will disable the whole extension
-  },
-  refactor = {
-    highlight_definitions = { enable = true }
-  }
-}
-EOF
+" lua <<EOF
+" require'nvim-treesitter.configs'.setup {
+"  ensure_installed = "python", -- one of "all", "language", or a list of languages
+"  highlight = {
+"    enable = true -- false will disable the whole extension
+"  },
+"  refactor = {
+"    highlight_definitions = { enable = true }
+"  }
+"}
+"EOF
 
 " tab to trigger completion
-inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"    \ pumvisible() ? "\<C-n>" :
+"    \ <SID>check_back_space() ? "\<TAB>" :
+"    \ coc#refresh()
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
     let col = col('.') - 1
