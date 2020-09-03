@@ -8,3 +8,7 @@ key('n', '<C-H>', '<C-W><C-H>', {noremap = true})
 
 -- use jk for escape
 key('i', 'jk', '<ESC>', {noremap = true})
+
+-- coc trigger completion
+key('i', '<Tab>', 'v:lua.coc_trigger_completion()',
+  {noremap = true, silent = true, expr = true})
