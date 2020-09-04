@@ -1,7 +1,6 @@
 local termcodes = {}
 
 local function insert_code(code)
-  print('inserting new termcode')
   local res = vim.api.nvim_replace_termcodes(code, true, true, true)
   termcodes[code] = res
   return res

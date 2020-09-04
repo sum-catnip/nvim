@@ -1,6 +1,5 @@
-vfuncs = require('vfuncs')
-
-vfuncs.plug.begin(vfuncs.stdpath('data') .. '/plugged')
+vf = require('vfuncs')
+vf.plug.begin(vf.stdpath('data') .. '/plugged')
 
 -- fish shell integration
 vim.cmd("Plug 'dag/vim-fish'")
@@ -13,7 +12,7 @@ vim.cmd("Plug 'nvim-treesitter/nvim-treesitter'")
 -- smooth scrolling
 vim.cmd("Plug 'psliwka/vim-smoothie'") 
 
-vfuncs.plug['end']()
+vf.plug['end']()
 
 -- import plugs settings
 require('plugs.coc')
