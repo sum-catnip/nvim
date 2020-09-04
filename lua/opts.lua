@@ -1,11 +1,13 @@
--- window --
+bo = require('bufopt')
+
+-->> window <<--
 
 -- show line numbers
 vim.wo.number = true
 -- put numbers and signs in the same column
 vim.wo.signcolumn = 'number'
 
--- edior --
+-->> edior <<--
 
 -- set font in gui
 if vim.o.guifont then
@@ -26,18 +28,6 @@ vim.o.hlsearch = true
 vim.o.clipboard = 'unnamedplus'
 -- background color for themes
 vim.o.background = 'dark'
--- number of spaces a tab should be
-vim.o.tabstop = 2
--- implicit tab size
-vim.o.softtabstop = 2
--- another kind of stabstop
-vim.o.shiftwidth = 2
--- convert tabs to spaces
-vim.o.expandtab = true
-vim.o.autoindent = true
-
--- coc compatability --
-
 -- abandon buffer when unloading
 vim.o.hidden = true
 -- some language servers dont like backup files
@@ -49,6 +39,18 @@ vim.o.cmdheight = 2
 vim.o.updatetime = 300
 -- avoid some prompts?
 vim.o.shortmess = vim.o.shortmess .. 'c'
+
+
+-->> buffer options <<--
+bo.tabstop = 2
+-- implicit tab size
+bo.softtabstop = 2
+-- another kind of stabstop
+bo.shiftwidth = 2
+-- convert tabs to spaces
+bo.expandtab = true
+bo.autoindent = true
+
 
 -- set leader key to space
 vim.g.mapleader = ' '
