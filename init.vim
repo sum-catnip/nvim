@@ -1,46 +1,14 @@
 lua require 'init'
 
-" get highlighting group under cursor
-" map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-" \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-" \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
-
-" treesitter
-" lua <<EOF
-" require'nvim-treesitter.configs'.setup {
-"  ensure_installed = "python", -- one of "all", "language", or a list of languages
-"  highlight = {
-"    enable = true -- false will disable the whole extension
-"  },
-"  refactor = {
-"    highlight_definitions = { enable = true }
-"  }
-"}
-"EOF
-
-" tab to trigger completion
-" inoremap <silent><expr> <TAB>
-"    \ pumvisible() ? "\<C-n>" :
-"    \ <SID>check_back_space() ? "\<TAB>" :
-"    \ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1] =~# '\s'
-endfunction
-
-" use c-space to trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()
-
 " <cr> to confirm completion
 " <C-g>u to break undo chain
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " [g and ]g to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostics-prev)
-nmap <silent> ]g <Plug>(coc-diagnostics-next)
+"nmap [g <Plug>(coc-diagnostics-prev)
+"nmap ]g <Plug>(coc-diagnostics-next)
+" nmap <expr> ge[ CocAction('diagnosticNext')
+" nmap <expr> ge] CocAction('diagnosticPrevious')
 
 " gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -135,20 +103,20 @@ nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
 
 " Remap for do codeAction of selected region
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-xmap <silent> <leader>aa :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>aa :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+"function! s:cocActionsOpenFromSelected(type) abort
+"  execute 'CocCommand actions.open ' . a:type
+"endfunction
+"xmap <silent> <leader>aa :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+"nmap <silent> <leader>aa :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-let g:OmniSharp_server_path = 'D:\Programs\omnisharpvim-fix\stdioproxy.exe'
-let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_timeout = 10
+"let g:OmniSharp_server_path = 'D:\Programs\omnisharpvim-fix\stdioproxy.exe'
+"let g:OmniSharp_server_stdio = 1
+"let g:OmniSharp_timeout = 10
 " set completeopt=longest,menuone,preview
 set previewheight=5
-let g:ale_linters = { 'cs': ['OmniSharp'] }
-let g:OmniSharp_highlight_types = 3
+"let g:ale_linters = { 'cs': ['OmniSharp'] }
+"let g:OmniSharp_highlight_types = 3
 
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<CR>
