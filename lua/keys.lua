@@ -1,14 +1,18 @@
-local key = vim.api.nvim_set_keymap
+bind = require('binds')
 
 -- easy buffer switching (crlt+direction to switch buffer)
-key('n', '<C-J>', '<C-W><C-J>', {noremap = true})
-key('n', '<C-K>', '<C-W><C-K>', {noremap = true})
-key('n', '<C-L>', '<C-W><C-L>', {noremap = true})
-key('n', '<C-H>', '<C-W><C-H>', {noremap = true})
+bind('n', '<C-J>', '<C-W><C-J>', 'noremap')
+bind('n', '<C-K>', '<C-W><C-K>', 'noremap')
+bind('n', '<C-L>', '<C-W><C-L>', 'noremap')
+bind('n', '<C-H>', '<C-W><C-H>', 'noremap')
 
 -- use jk for escape
-key('i', 'jk', '<ESC>', {noremap = true})
+bind('i', 'jk', '<ESC>', 'noremap')
 
 -- coc trigger completion
-key('i', '<Tab>', 'v:lua.coc_trigger_completion()',
-  {noremap = true, silent = true, expr = true})
+-- bind('i', '<Tab>', 'v:lua.coc_trigger_tab_completion()', 'noremap', 'silent', 'expr')
+
+-- coc advance completion or de-tab
+-- bind('i', '<S-Tab>', 'v:lua.coc_shifttab_advance_completions()', 'noremap', 'expr')
+
+-- bind('i', '<cr>', 'v:lua.coc_cr_confirm_completion')
