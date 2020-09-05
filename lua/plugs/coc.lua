@@ -1,6 +1,7 @@
 vf    = require('vfuncs')
 codes = require('termcodes')
 bind  = require('binds')
+af    = require('autofunc')
 
 -- util function to convert an int to a bool
 local function b(i) return i ~= 0 end
@@ -46,9 +47,59 @@ else
   end, 'noremap')
 end
 
--- scroll through diagnostics
--- bind('n', 'ge', function() return vf.CocAction('diagnosticPrevious') end, 'noremap')
--- bind('n', 'ge', function() return vf.CocAction('diagnosticNext') end, 'noremap')
+-- we use cmd so the return value is ignored
+bind('n', 'ge]', function() vf.CocActionAsync('diagnosticNext') end, 'silent', 'cmd')
+bind('n', 'ge[', function() vf.CocActionAsync('diagnosticPrevious') end, 'silent', 'cmd')
 
--- scroll through diagnostics
--- bind('n', ']g', 'coc-diagnostic-next', 'silent')
+-- gotos
+bind('n', 'gd', function() vf.CocActionAsync('jumpDefinition') end, 'silent', 'cmd')
+bind('n', 'gy', function() vf.CocActionAsync('jumpTypeDefinition') end, 'silent', 'cmd')
+bind('n', 'gi', function() vf.CocActionAsync('jumpImplementation') end, 'silent', 'cmd')
+bind('n', 'gr', function() vf.CocActionAsync('jumpReferences') end, 'silent', 'cmd')
+
+-- show docs
+bind('n', 'K', function()
+  local ft = vim.bo.filetype
+  if ft:find('vim') or ft:find('help') then
+    vim.cmd("execute 'h '.expand('<cword>')")
+  else vf.CocActionAsync('doHover')
+  end
+end, 'silent', 'cmd')
+
+-- highlight symbol under cursor (and references)
+af('CursorHold', '*', function() vf.CocActionAsync('highlight') end)
+
+-- rename symbol under cursor
+bind('n', '<leader>rn', function() vf.CocActionAsync('rename') end, 'cmd')
+
+-- so i have no idea how to go about doing this in actual lua
+-- what this does is:
+-- if: will select inside function for v and o mode
+--  (ex: cif will delete the first line of the function and go into insert mode)
+-- af: will select at function for v and o mode
+--  (ex: caf will delete the function and go into insert mode)
+-- ic, ac same as if and af but for classes
+bind('x', 'if', '<Plug>(coc-funcobj-i)')
+bind('o', 'if', '<Plug>(coc-funcobj-i)')
+
+bind('x', 'if', '<Plug>(coc-funcobj-a)')
+bind('o', 'if', '<Plug>(coc-funcobj-a)')
+
+bind('x', 'ic', '<Plug>(coc-classobj-i)')
+bind('o', 'ic', '<Plug>(coc-classobj-i)')
+
+bind('x', 'ac', '<Plug>(coc-classobj-a)')
+bind('o', 'ac', '<Plug>(coc-classobj-a)')
+
+-- listings
+
+-- diagnostics
+bind('n', '<leader>ld', function() vim.cmd('CocList diagnostics') end, 'silent', 'nowait', 'cmd')
+-- extensions
+bind('n', '<leader>le', function() vim.cmd('CocList extensions') end, 'silent', 'nowait', 'cmd')
+-- commands
+bind('n', '<leader>lc', function() vim.cmd('CocList commands') end, 'silent', 'nowait', 'cmd')
+-- local symbol
+bind('n', '<leader>lls', function() vim.cmd('CocList outline') end, 'silent', 'nowait', 'cmd')
+-- workspace symbol
+bind('n', '<leader>ls', function() vim.cmd('CocList -I symbols') end, 'silent', 'nowait', 'cmd')
