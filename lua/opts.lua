@@ -28,6 +28,8 @@ vim.o.hlsearch = true
 vim.o.clipboard = 'unnamedplus'
 -- background color for themes
 vim.o.background = 'dark'
+-- we support termguicolors
+vim.o.termguicolors = true
 -- abandon buffer when unloading
 vim.o.hidden = true
 -- some language servers dont like backup files
