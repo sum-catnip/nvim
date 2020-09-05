@@ -54,6 +54,9 @@ bo.autoindent = true
 
 -- set leader key to space
 vim.g.mapleader = ' '
+-- and also for the local buffer
+-- because thats what `let` does...
+vim.b.mapleader = ' '
 
 -- set language to english
 vim.cmd('language en_US.utf-8')
