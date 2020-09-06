@@ -1,9 +1,17 @@
+af = require('autofunc')
 bo = require('bufopt')
 
 -->> window <<--
 
--- show line numbers
+-- show file numbers
 vim.wo.number = true
+-- relative file numbers
+vim.wo.relativenumber = true
+vim.wo.nu = true
+vim.wo.rnu = true
+-- relative in normal mode, absolute in insert
+af('BufEnter,FocusGained,InsertLeave', '*', function() vim.wo.relativenumber = true end)
+af('BufLeave,FocusLost,InsertEnter',   '*', function() vim.wo.relativenumber = false end)
 -- put numbers and signs in the same column
 vim.wo.signcolumn = 'number'
 
@@ -41,7 +49,9 @@ vim.o.cmdheight = 2
 vim.o.updatetime = 300
 -- avoid some prompts?
 vim.o.shortmess = vim.o.shortmess .. 'c'
-
+-- scrolling "bounding"
+vim.o.scrolloff = 5
+vim.o.sidescrolloff = 5
 
 -->> buffer options <<--
 bo.tabstop = 2
@@ -69,3 +79,4 @@ vim.cmd('syntax on')
 
 -- enable filetype detection
 vim.cmd('filetype plugin indent on')
+
