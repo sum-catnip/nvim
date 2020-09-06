@@ -13,9 +13,12 @@ vim.cmd("Plug 'psliwka/vim-smoothie'")
 vim.cmd("Plug 'vim-airline/vim-airline'")
 -- theme
 vim.cmd("Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }")
+-- start menu
+vim.cmd("Plug 'mhinz/vim-startify'")
 
 vf.plug['end']()
 
 -- import plugs settings
 require('plugs.coc')
 require('plugs.treesitter')
+require('plugs.startify')
