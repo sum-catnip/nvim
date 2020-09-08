@@ -19,7 +19,7 @@ vim.wo.signcolumn = 'number'
 
 -- set font in gui
 if vim.o.guifont then
-  vim.o.guifont = 'Iosevka:14'
+  vim.o.guifont = 'Iosevka Nerd Font:h14'
 end
   
 -- split a new buffer to the right
