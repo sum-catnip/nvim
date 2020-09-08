@@ -15,6 +15,11 @@ vim.cmd("Plug 'vim-airline/vim-airline'")
 vim.cmd("Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }")
 -- start menu
 vim.cmd("Plug 'mhinz/vim-startify'")
+-- fzf
+vim.cmd("Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }")
+vim.cmd("Plug 'junegunn/fzf.vim'")
+-- coc-fzf
+vim.cmd("Plug 'antoinemadec/coc-fzf'")
 
 vf.plug['end']()
 

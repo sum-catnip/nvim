@@ -94,17 +94,19 @@ bind('o', 'ac', '<Plug>(coc-classobj-a)')
 -- listings
 
 -- diagnostics
-bind('n', '<leader>ld', function() vim.cmd('CocList diagnostics') end, 'silent', 'nowait', 'cmd')
+bind('n', '<leader>ld', function() vim.cmd('CocFzfList diagnostics') end, 'silent', 'nowait', 'cmd')
 -- extensions
-bind('n', '<leader>le', function() vim.cmd('CocList extensions') end, 'silent', 'nowait', 'cmd')
+bind('n', '<leader>le', function() vim.cmd('CocFzfList extensions') end, 'silent', 'nowait', 'cmd')
 -- commands
-bind('n', '<leader>lc', function() vim.cmd('CocList commands') end, 'silent', 'nowait', 'cmd')
+bind('n', '<leader>lc', function() vim.cmd('CocFzfList commands') end, 'silent', 'nowait', 'cmd')
 -- local symbol
-bind('n', '<leader>lls', function() vim.cmd('CocList outline') end, 'silent', 'nowait', 'cmd')
+bind('n', '<leader>lls', function() vim.cmd('CocFzfList outline') end, 'silent', 'nowait', 'cmd')
 -- workspace symbol
-bind('n', '<leader>ls', function() vim.cmd('CocList -I symbols') end, 'silent', 'nowait', 'cmd')
+bind('n', '<leader>ls', function() vim.cmd('CocFzfList -I symbols') end, 'silent', 'nowait', 'cmd')
 -- yanks
-bind('n', '<leader>ly', function() vim.cmd('CocList -A --normal yank') end, 'silent', 'nowait', 'cmd')
+bind('n', '<leader>ly', function() vim.cmd('CocFzfList -A --normal yank') end, 'silent', 'nowait', 'cmd')
+-- actions
+bind('n', '<leader>la', function() vim.cmd('CocFzfList actions') end, 'silent', 'nowait', 'cmd')
 
 -- autoinstall extensions
 vim.g.coc_global_extensions = {
@@ -112,5 +114,6 @@ vim.g.coc_global_extensions = {
   'coc-json',
   'coc-highlight',
   'coc-yank',
-  'coc-cord'
+  'coc-cord',
+  'coc-rls'
 }
