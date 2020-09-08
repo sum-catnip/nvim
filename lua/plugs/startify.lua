@@ -17,5 +17,5 @@ vim.g.startify_lists = {
 
 -- save session
 bind('n', '<leader>ss', function() vim.cmd('SSave') end, 'noremap', 'cmd')
--- lise sessions
-bind('n', '<leader>ls', function() vim.cmd('SClose') end, 'noremap', 'cmd')
+-- list project
+bind('n', '<leader>lp', function() vim.cmd('SClose') end, 'noremap', 'cmd')

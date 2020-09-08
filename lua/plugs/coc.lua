@@ -103,3 +103,14 @@ bind('n', '<leader>lc', function() vim.cmd('CocList commands') end, 'silent', 'n
 bind('n', '<leader>lls', function() vim.cmd('CocList outline') end, 'silent', 'nowait', 'cmd')
 -- workspace symbol
 bind('n', '<leader>ls', function() vim.cmd('CocList -I symbols') end, 'silent', 'nowait', 'cmd')
+-- yanks
+bind('n', '<leader>ly', function() vim.cmd('CocList -A --normal yank') end, 'silent', 'nowait', 'cmd')
+
+-- autoinstall extensions
+vim.g.coc_global_extensions = {
+  'coc-python',
+  'coc-json',
+  'coc-highlight',
+  'coc-yank',
+  'coc-cord'
+}
