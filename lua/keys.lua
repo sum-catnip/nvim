@@ -8,3 +8,6 @@ bind('n', '<C-H>', '<C-W><C-H>', 'noremap')
 
 -- use jk for escape
 bind('i', 'jk', '<ESC>', 'noremap')
+
+-- <leader>w for update
+bind('n', '<leader>w', function() vim.cmd('update') end, 'cmd')

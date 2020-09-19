@@ -20,6 +20,8 @@ vim.cmd("Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }")
 vim.cmd("Plug 'junegunn/fzf.vim'")
 -- coc-fzf
 vim.cmd("Plug 'antoinemadec/coc-fzf'")
+-- sandwich
+vim.cmd("Plug 'machakann/vim-sandwich'")
 
 vf.plug['end']()
 

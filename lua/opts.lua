@@ -19,9 +19,9 @@ vim.wo.signcolumn = 'number'
 
 -- set font in gui
 if vim.o.guifont then
-  vim.o.guifont = 'Iosevka Nerd Font:h14'
+  vim.o.guifont = 'Fira Code'
 end
-  
+
 -- split a new buffer to the right
 vim.o.splitright = true
 -- split new buffer to the bottom
