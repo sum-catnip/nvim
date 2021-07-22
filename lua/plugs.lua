@@ -1,32 +1,30 @@
-vf = require('vfuncs')
-vf.plug.begin(vf.stdpath('data') .. '/plugged')
+local packer = require('packer')
+local vf = require('vfuncs')
 
--- fish shell integration
-vim.cmd("Plug 'dag/vim-fish'")
--- vscode plugins in vim
-vim.cmd("Plug 'neoclide/coc.nvim', {'branch': 'release'}")
--- semantic highlighting
-vim.cmd("Plug 'nvim-treesitter/nvim-treesitter'")
--- smooth scrolling
-vim.cmd("Plug 'psliwka/vim-smoothie'") 
--- statusline
-vim.cmd("Plug 'vim-airline/vim-airline'")
--- theme
-vim.cmd("Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }")
--- start menu
-vim.cmd("Plug 'mhinz/vim-startify'")
--- fzf
-vim.cmd("Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }")
-vim.cmd("Plug 'junegunn/fzf.vim'")
--- coc-fzf
-vim.cmd("Plug 'antoinemadec/coc-fzf'")
--- sandwich
-vim.cmd("Plug 'machakann/vim-sandwich'")
+vim.cmd [[packadd packer.nvim]]
 
-vf.plug['end']()
+packer.startup(function(use)
+  use 'wbthomason/packer.nvim'
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'psliwka/vim-smoothie'
+  use 'mhinz/vim-startify'
+  use { 'junegunn/fzf', run = function() vf.fzf.install() end }
+  use 'junegunn/fzf.vim'
+  use 'machakann/vim-sandwich'
+  use 'bluz71/vim-moonfly-colors'
+  use 'kyazdani42/nvim-web-devicons'
+  use 'justinmk/vim-sneak'
+  use 'dag/vim-fish'
+  use 'neovim/nvim-lspconfig'
+  use 'nvim-lua/completion-nvim'
+  use 'cespare/vim-toml'
+  use 'gfanto/fzf-lsp.nvim'
+  use 'itchyny/lightline.vim'
+  use 'cohama/lexima.vim'
+end)
 
--- import plugs settings
-require('plugs.coc')
-require('plugs.treesitter')
 require('plugs.startify')
 require('plugs.fzf')
+require('plugs.sneak')
+require('plugs.lsp')
+require('plugs.completion-nvim')

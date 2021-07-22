@@ -8,6 +8,10 @@ bind('n', '<C-H>', '<C-W><C-H>', 'noremap')
 
 -- use jk for escape
 bind('i', 'jk', '<ESC>', 'noremap')
+-- <ESC> for escaping terminal mode
+bind('t', '<ESC>', '<C-\\><C-n>', 'noremap')
+-- to actually insert the escape key
+bind('t', '<C-v><Esc>', '<Esc>', 'noremap')
 
 -- <leader>w for update
 bind('n', '<leader>w', function() vim.cmd('update') end, 'cmd')

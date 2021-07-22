@@ -10,7 +10,13 @@ return function(mode, lhs, rhs, ...)
   -- the field will be set to true
   -- we do this because the neovim api wants {thing1: true, thing2: true, ...}
   local opt = {}
-  for _, a in ipairs({...}) do opt[a] = true end
+  local args = {}
+  -- either use varargs or a table as the last arg
+  if #({...}) == 1 and type(({...})[1]) == 'table' then args = ({...})[1]
+  else args = ({...})
+  end
+
+  for _, a in ipairs(args) do opt[a] = true end
 
   -- if we pass in a lua function
   if type(rhs) == 'function' then
@@ -31,5 +37,10 @@ return function(mode, lhs, rhs, ...)
     end
   end
 
-  return vim.api.nvim_set_keymap(mode, lhs, rhs, opt)
+  -- buffer local bindings
+  if args['buf'] then
+    return vim.api.nvim_buf_set_keymap(({...})['buf'], mode, lhs, rhs, opt)
+  else
+    return vim.api.nvim_set_keymap(mode, lhs, rhs, opt)
+  end
 end

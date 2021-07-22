@@ -115,5 +115,6 @@ vim.g.coc_global_extensions = {
   'coc-highlight',
   'coc-yank',
   'coc-cord',
-  'coc-rust-analyzer'
+  'coc-rust-analyzer',
+  'coc-tsserver'
 }

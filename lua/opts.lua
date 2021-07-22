@@ -12,15 +12,9 @@ vim.wo.rnu = true
 -- relative in normal mode, absolute in insert
 af('BufEnter,FocusGained,InsertLeave', '*', function() vim.wo.relativenumber = true end)
 af('BufLeave,FocusLost,InsertEnter',   '*', function() vim.wo.relativenumber = false end)
+af('BufWritePost', 'plugins.lua', function() vim.cmd('PackerCompile') end)
 -- put numbers and signs in the same column
 vim.wo.signcolumn = 'number'
-
--->> edior <<--
-
--- set font in gui
-if vim.o.guifont then
-  vim.o.guifont = 'Fira Code'
-end
 
 -- split a new buffer to the right
 vim.o.splitright = true

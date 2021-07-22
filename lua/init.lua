@@ -1,4 +1,4 @@
 require('opts')
 require('plugs')
 require('keys')
-require('style')
+require('style.style')
