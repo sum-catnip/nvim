@@ -1,4 +1,3 @@
-local fzf_lsp = require('fzf_lsp')
 local cfg = require('lspconfig')
 local vf = require('vfuncs')
 local bind = require('binds')
@@ -20,44 +19,37 @@ local servers = {
         [vf.expand('$VIMRUNTIME/lua/vim/lsp')] = true
       }
     }
-  }
+  },
+  clangd = {}
 }
 
 local function on_attach(client, bufnr)
-  require('completion').on_attach()
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local opt = {'noremap', 'silent', 'cmd', bufid=bufnr}
 
-  bind('n', 'dD', fzf_lsp.declaration_call, opt)
-  bind('n', 'gd', fzf_lsp.definition_call, opt)
+  bind('n', 'dD', vim.lsp.buf.declaration, opt)
+  bind('n', 'gd', vim.lsp.buf.definition, opt)
   bind('n', 'K', vim.lsp.buf.hover, opt)
+  bind('n', 'gi', vim.lsp.buf.implementation, opt)
   bind('n', 'C-k', vim.lsp.buf.signature_help, opt)
   bind('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opt)
   bind('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opt)
   bind('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opt)
-  bind('n', '<space>D', fzf_lsp.type_definition_call, opt)
+  bind('n', '<space>D', vim.lsp.buf.type_definition, opt)
   bind('n', '<space>rn', vim.lsp.buf.rename, opt)
-  bind('n', 'gr', fzf_lsp.references_call, opt)
-  bind('n', '<space>e', vim.lsp.diagnostic.show_line_diagnostics, opt)
-  bind('n', '<space>le', fzf_lsp.diagnostic_call, opt)
-  bind('n', '[d', vim.lsp.diagnostic.goto_prev, opt)
-  bind('n', ']d', vim.lsp.diagnostic.goto_next, opt)
-  bind('n', '<space>ac', fzf_lsp.code_action_call, opt)
-  bind('n', '<space>x', fzf_lsp.incoming_calls_call, opt)
-  bind('n', '<space>X', fzf_lsp.outgoing_calls_call, opt)
-  bind('n', '<space>fs', fzf_lsp.document_symbol_call, opt)
-  bind('n', '<space>fS', function() fzf_lsp.workspace_symbol_call{} end, opt)
+  bind('n', '<space>ca', vim.lsp.buf.code_action, opt)
+  bind('n', 'gr', vim.lsp.buf.references, opt)
 
   -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     bind('n', '<space>f', vim.lsp.buf.formatting, opt)
-  elseif client.resolved_capabilities.document_range_formatting then
+  elseif client.server_capabilities.document_range_formatting then
     bind('n', '<space>f', vim.lsp.buf.range_formatting, opt)
   end
 
   -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     -- i should really start supporting autogroups
     vim.api.nvim_exec([[
       augroup lsp_document_highlight
